@@ -14,10 +14,10 @@ app.use(bodyParser.json());
 
 const pool = mysql.createPool({
   connectionLimit: 10,
-  host: process.env.HOST,
-  user: process.env.USER,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
+  host: process.env.HOST_PROD,
+  user: process.env.USER_PROD,
+  password: process.env.PASSWORD_PROD,
+  database: process.env.DATABASE_PROD,
 });
 
 // Middleware untuk menangani koneksi ke database
