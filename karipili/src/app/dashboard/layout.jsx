@@ -1,5 +1,6 @@
 "use client";
 import Sidebar from "@/components/navigation/Sidebar";
+import Topbar from "@/components/navigation/Topbar";
 import { Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
 export default function Layout({ children }) {
@@ -27,6 +28,7 @@ export default function Layout({ children }) {
   return (
     <>
       <div className="bg-secondary-50 min-h-screen" id="dashboard">
+        <Topbar showNav={showNav} setShowNav={setShowNav} />
         <Transition
           as={Fragment}
           show={showNav}
@@ -38,7 +40,7 @@ export default function Layout({ children }) {
           leaveTo="-translate-x-full">
           <Sidebar showNav={showNav} setShowNav={setShowNav} />
         </Transition>
-        <main className={`pt-12 transition-all duration-[400ms] ${showNav && !isMobile ? "pl-56" : ""}`}>
+        <main className={`pt-16 transition-all duration-[400ms] ${showNav && !isMobile ? "pl-56" : ""}`}>
           <div className="px-4 md:px-16">{children}</div>
           {/* <SpeedInsights /> */}
         </main>

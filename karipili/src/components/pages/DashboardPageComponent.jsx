@@ -1,12 +1,16 @@
 import { BiSearch } from "react-icons/bi";
 import { MdWorkOutline, MdOutlineMap } from "react-icons/md";
+import WaveAnimation from "../animation/WaveAnimation";
 
 export default function DashboardPageComponent() {
   return (
     <>
       <div>
-        <p className="p-2 w-fit text-2xl font-bold text-primary-50 border-b-2 border-primary-50 ">Dashboard</p>
-        <div className="pt-14 flex flex-col w-fit gap-10 lg:gap-20 lg:flex-row">
+        <div className="p-2 w-fit text-2xl font-bold text-primary-50 border-b-2 border-primary-50 ">
+          <WaveAnimation title="Dashboard" />
+        </div>
+
+        <div className="pt-10 flex flex-col w-fit gap-10 lg:gap-20 lg:flex-row">
           {/* Card 1 Section */}
           <div className="bg-primary-150 shadow-2xl rounded-2xl">
             <div className="flex-col">

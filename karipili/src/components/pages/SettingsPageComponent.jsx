@@ -1,4 +1,6 @@
-export default function SettingsPageComponent() {
+export default function SettingsPageComponent({ props }) {
+  const handleButtonLogout = props.handleButtonLogout;
+
   return (
     <>
       <div>
@@ -33,7 +35,9 @@ export default function SettingsPageComponent() {
           <div>
             <p className="w-fit text-xl font-bold text-primary-50 border-b-2 border-primary-50 ">Auth</p>
             <div className="pt-10">
-              <button className="py-1 px-20 text-sm text-primary-150 bg-warm-150 border-2 border-secondary-150 rounded-lg font-semibold hover:scale-105">Logout</button>
+              <button onClick={handleButtonLogout} className="py-1 px-20 text-sm text-primary-150 bg-warm-150 border-2 border-secondary-150 rounded-lg font-semibold hover:scale-105">
+                Logout
+              </button>
             </div>
           </div>
         </div>
