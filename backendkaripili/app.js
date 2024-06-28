@@ -9,7 +9,19 @@ const cors = require("cors");
 const app = express();
 const PORT = 4000;
 
-app.use(cors());
+const whitelist = ['https://karipili.vercel.app'];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1 || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 const pool = mysql.createPool({
