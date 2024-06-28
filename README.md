@@ -12,4 +12,4 @@ Karipili is a career recommendation application that can recommend careers with 
 
 Video Promotion on Instagram: <a href="https://www.instagram.com/reel/C63pZOIJyTR/?igsh=bmt0M2FrNXExaXdy">Here</a>
 
-Proposal Magazine: <a href="">Here</a>
+Proposal Magazine: <a href="https://www.canva.com/design/DAGEL0_IirA/Iw011AJTNlGd6f4rvkFKNA/edit?utm_content=DAGEL0_IirA&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton">Here</a>
