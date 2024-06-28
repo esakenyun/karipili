@@ -11,6 +11,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+     <head>
+        <meta httpEquiv="Access-Control-Allow-Origin" content="*" />
+      </head>
       <body className={poppins.className}>
         {children}
         <Toaster position="top-center" richColors />
