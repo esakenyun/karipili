@@ -50,8 +50,46 @@ export default function Prompt() {
           <div className="fixed bottom-9 pl-7 left-0 pr-7 w-full lg:pl-[355px] lg:pr-28">
             <div className="bg-secondary-50">
               <form className="flex items-center gap-2 rounded-2xl p-2 border border-primary-50 bg-primary-150">
-                <textarea ref={textareaRef} name="prompt" id="prompt" onInput={handleInput} rows={1} className="rounded-2xl p-3 w-full bg-primary-150  resize-none focus:outline-none text-sm" placeholder="Message Karipili" />
-                <button onClick={handleSubmit} type="button" className="rounded-md bg-primary-200 text-primary-150 p-2">
+                {/* <textarea ref={textareaRef} name="prompt" id="prompt" onInput={handleInput} rows={1} className="rounded-2xl p-3 w-full bg-primary-150  resize-none focus:outline-none text-sm" placeholder="Message Karipili" /> */}
+
+                <div className="w-full">
+                  <div className="flex flex-col md:flex-row gap-5 items-start">
+                    <div className="flex flex-col items-center ">
+                      <h3 className="mb-1 font-semibold">Range Salary</h3>
+                      <div>
+                        <input type="number" className="border border-secondary-150 w-20 md:w-32 mx-2 rounded-lg p-1 text-sm placeholder:text-sm" placeholder="1,000,000" />
+                        <span>-</span>
+                        <input type="number" className="border border-secondary-150 w-20 md:w-32 mx-2 rounded-lg p-1 text-sm placeholder:text-sm" placeholder="10,000,000" />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="mb-1 font-semibold">Select Region</h3>
+                      <select name="region" id="region" className="border border-secondary-200 p-1 rounded-md" defaultValue="" required>
+                        <option value="" disabled>
+                          select region
+                        </option>
+                        <option value="US">USA</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Asia">Asia</option>
+                      </select>
+                    </div>
+                    {/* <label htmlFor="Range">
+                      Range Salary <span className="text-xs">from</span>
+                      <input type="number" className="border border-secondary-200 w-20 md:w-32 mx-2 rounded-lg p-1 placeholder:text-sm" placeholder="1,000,000" />
+                      <span className="text-xs">to</span>
+                      <input type="number" className="border border-secondary-200 w-20 md:w-32 mx-2 rounded-lg p-1 placeholder:text-sm" placeholder="10,000,000" />
+                    </label>
+                    <label htmlFor="Select Region" className="mt-2">
+                      Select Region
+                      <select name="region" id="region" className="bg-white border border-black rounded-md ml-3 w-fit p-1">
+                        <option value="US">US</option>
+                        <option value="Australia">Australia</option>
+                        <option value="Asia">Asia</option>
+                      </select>
+                    </label> */}
+                  </div>
+                </div>
+                <button onClick={handleSubmit} type="submit" className="rounded-md bg-primary-200 text-primary-150 p-2 hover:bg-green-500">
                   <IoSend />
                 </button>
               </form>

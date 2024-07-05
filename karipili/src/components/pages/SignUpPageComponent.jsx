@@ -4,7 +4,9 @@ import Link from "next/link";
 export default function SignUpPageComponent({ props }) {
   const fullname = props.fullname;
   const email = props.email;
+  const emailError = props.emailError;
   const password = props.password;
+  const passwordError = props.passwordError;
 
   const handleFullnameChange = props.handleFullnameChange;
   const handleEmailChange = props.handleEmailChange;
@@ -26,8 +28,15 @@ export default function SignUpPageComponent({ props }) {
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                 <input type="text" placeholder="Fullname" className="w-full p-2 border text-sm border-secondary-100 rounded-xl" value={fullname} onChange={handleFullnameChange} />
                 <input type="email" placeholder="Email" className="w-full p-2 border text-sm border-secondary-100 rounded-xl" value={email} onChange={handleEmailChange} />
+                {emailError && <p className="text-sm text-warm-200 ">{emailError}</p>}
                 <input type="password" placeholder="Password" className="w-full p-2 border border-secondary-100 rounded-xl" value={password} onChange={handlePasswordChange} />
-                <button type="submit" disabled={isLoading} className="py-2 font-semibold bg-primary-200 text-primary-150 rounded-xl border border-secondary-100 hover:scale-105 active:bg-warm-50">
+                {passwordError && <p className="text-sm text-warm-200">{passwordError}</p>}
+                <button
+                  type="submit"
+                  disabled={isLoading || fullname.trim() === "" || email.trim() === "" || password.length < 8}
+                  className={`py-2 font-semibold text-primary-150 rounded-xl border border-secondary-100 hover:scale-105 active:bg-warm-50 ${
+                    isLoading || fullname.trim() === "" || email.trim() === "" || password.length < 8 ? "bg-green-400 text-primary-150 cursor-not-allowed" : "bg-primary-200 text-primary-150"
+                  }`}>
                   {isLoading ? "Sign Up..." : "Sign Up"}
                 </button>
               </form>

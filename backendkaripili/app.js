@@ -20,7 +20,6 @@ const pool = mysql.createPool({
   database: process.env.DATABASE_PROD,
 });
 
-// Middleware untuk menangani koneksi ke database
 pool.getConnection((err, connection) => {
   if (err) {
     if (err.code === "PROTOCOL_CONNECTION_LOST") {
@@ -141,7 +140,6 @@ app.post("/api/v1/register", (req, res) => {
   });
 });
 
-// Endpoint untuk login user
 app.post("/api/v1/login", (req, res) => {
   const { email, password } = req.body;
 
@@ -188,9 +186,8 @@ app.post("/api/v1/login", (req, res) => {
       });
     }
 
-    // Generate token JWT
     const token = jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET, {
-      expiresIn: "2h",
+      expiresIn: 86400,
     });
 
     res.status(200).json({

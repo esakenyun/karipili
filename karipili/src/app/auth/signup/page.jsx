@@ -8,7 +8,9 @@ import { toast } from "sonner";
 export default function SignUp() {
   const router = useRouter();
   const [fullname, setFullname] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [email, setEmail] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -17,11 +19,25 @@ export default function SignUp() {
   };
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    const value = e.target.value;
+    const emailRegex = /^((?!\.)[\w-_.]*[^.])(@\w+)(\.\w+(\.\w+)?[^.\W])$/gim;
+    if (!emailRegex.test(value)) {
+      setEmailError("Invalid email format");
+    } else {
+      setEmailError("");
+    }
+    setEmail(value);
   };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+    const value = e.target.value;
+    const passwordLength = value.length >= 8;
+    if (!passwordLength) {
+      setPasswordError("Password Length must be 8 or more ");
+    } else {
+      setPasswordError("");
+    }
+    setPassword(value);
   };
 
   const handleSubmit = async (e) => {
@@ -45,7 +61,9 @@ export default function SignUp() {
       props={{
         fullname: fullname,
         email: email,
+        emailError: emailError,
         password: password,
+        passwordError: passwordError,
         handleFullnameChange: handleFullnameChange,
         handleEmailChange: handleEmailChange,
         handlePasswordChange: handlePasswordChange,

@@ -3,7 +3,9 @@ import Link from "next/link";
 
 export default function SignInPageComponent({ props }) {
   const email = props.email;
+  const emailError = props.emailError;
   const password = props.password;
+  const passwordError = props.passwordError;
 
   const handleEmailChange = props.handleEmailChange;
   const handlePasswordChange = props.handlePasswordChange;
@@ -22,9 +24,16 @@ export default function SignInPageComponent({ props }) {
               <p className="font-bold text-3xl text-warm-250">Sign In</p>
               <p className="font-medium py-4 text-warm-250 text-sm">If you are already a member, easily log in</p>
               <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-                <input type="email" placeholder="Email" className="w-full p-2 border text-sm border-secondary-100 rounded-xl" value={email} onChange={handleEmailChange} />
-                <input type="password" placeholder="Password" className="w-full p-2 border border-secondary-100 rounded-xl" value={password} onChange={handlePasswordChange} />
-                <button type="submit" disabled={isLoading} className="py-2 font-semibold bg-warm-250 text-primary-150 rounded-xl border border-secondary-100 hover:scale-105 active:bg-warm-300">
+                <input type="email" placeholder="Email" className="w-full p-2 border text-sm border-secondary-100 rounded-xl" value={email} onChange={handleEmailChange} required />
+                {emailError && <p className="text-sm text-warm-200 ">{emailError}</p>}
+                <input type="password" placeholder="Password" className="w-full p-2 border border-secondary-100 rounded-xl" value={password} onChange={handlePasswordChange} required />
+                {passwordError && <p className="text-sm text-warm-200 ">{passwordError}</p>}
+                <button
+                  type="submit"
+                  disabled={isLoading || email.trim() === "" || password.length < 8}
+                  className={`py-2 font-semibold rounded-xl border border-secondary-100 hover:scale-105 active:bg-warm-300 ${
+                    isLoading || email.trim() === "" || password.length < 8 ? "bg-primary-50 text-primary-150 cursor-not-allowed" : "bg-warm-250 text-primary-150"
+                  }`}>
                   {isLoading ? "Sign In..." : "Sign In"}
                 </button>
               </form>

@@ -1,4 +1,5 @@
 scrapper/node_modules
 karipili/node_modules
+karipili/.env.local
 backendkaripili/node_modules
 backendkaripili/.env
