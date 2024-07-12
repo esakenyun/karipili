@@ -21,7 +21,7 @@ const Sidebar = forwardRef(({ showNav, setShowNav }, ref) => {
         </div>
         <div className="flex flex-col">
           <SidebarItem href="/dashboard" text="Dashboard" icon={HiOutlineHome} onItemClick={() => setIsActive(false)} />
-          <SidebarItem href="/dashboard/prompt" text="Prompt" icon={BsChatSquareText} onItemClick={() => setIsActive(false)} />
+          <SidebarItem href="/dashboard/prompt" text="Try it" icon={BsChatSquareText} onItemClick={() => setIsActive(false)} />
           <SidebarItem href="/dashboard/settings" text="Settings" icon={IoSettingsSharp} onItemClick={() => setIsActive(false)} />
         </div>
       </div>

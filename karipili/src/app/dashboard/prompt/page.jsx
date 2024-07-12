@@ -1,12 +1,18 @@
 "use client";
 import AIResponse from "@/components/card/AIResponse";
 import UserPrompt from "@/components/card/UserPrompt";
-import { useRef, useState } from "react";
+import { getRecommendations } from "@/helpers/promptHelper";
+import { useEffect, useRef, useState } from "react";
 import { IoSend } from "react-icons/io5";
 
 export default function Prompt() {
   const textareaRef = useRef(null);
   const [value, setValue] = useState("");
+  const [minSalary, setMinSalary] = useState([1, 1000000]);
+  const [maxSalary, setMaxSalary] = useState([1000000, 10000000]);
+  const [region, setRegion] = useState("");
+  const [data, setData] = useState([]);
+  const [topN, setTopN] = useState(5);
 
   const handleInput = (event) => {
     const textarea = textareaRef.current;
@@ -21,31 +27,41 @@ export default function Prompt() {
     }
   };
 
-  const handleSubmit = () => {
-    console.log(value);
+  const removeCommaAndDot = (value) => {
+    return value.replace(/[,\.]/g, '');
+  };
+  
+  const changeMinSalary = (event) => {
+    const sanitizedValue = removeCommaAndDot(event.target.value);
+    setMinSalary(sanitizedValue);
+  };
+  
+  const changeMaxSalary = (event) => {
+    const sanitizedValue = removeCommaAndDot(event.target.value);
+    setMaxSalary(sanitizedValue);
+  };
+
+  const changeRegion = (event) => {
+    setRegion(event.target.value);
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const response = await getRecommendations(minSalary, maxSalary, region, topN);
+    setData(response.data);
+    console.log(response.data)
   };
 
   return (
     <>
       <div>
-        <p className="p-2 w-fit text-2xl font-bold text-primary-50 border-b-2 border-primary-50 ">AI Prompt</p>
+        <p className="p-2 w-fit text-2xl font-bold text-primary-50 border-b-2 border-primary-50 ">Job Recommendation</p>
         <div className="py-10">
           <div className="flex justify-center">
-            <p className="bg-secondary-100 text-xs text-primary-150 px-8 rounded-full font-bold">Your Chat</p>
+            <p className="bg-secondary-100 text-xs text-primary-150 px-8 rounded-full font-bold">List Job Recommendation</p>
           </div>
           <div className="absolute top-44 lg:top-48 pr-7 lg:left-[355px] lg:right-28 pb-36 lg:px-0 lg:pr-0">
-            <UserPrompt />
-            <div className="mt-5">
-              <AIResponse />
-            </div>
-            <UserPrompt />
-            <div className="mt-5">
-              <AIResponse />
-            </div>
-            <UserPrompt />
-            <div className="mt-5">
-              <AIResponse />
-            </div>
+          <UserPrompt data={data} />
           </div>
           <div className="fixed bottom-9 pl-7 left-0 pr-7 w-full lg:pl-[355px] lg:pr-28">
             <div className="bg-secondary-50">
@@ -57,20 +73,20 @@ export default function Prompt() {
                     <div className="flex flex-col items-center ">
                       <h3 className="mb-1 font-semibold">Range Salary</h3>
                       <div>
-                        <input type="number" className="border border-secondary-150 w-20 md:w-32 mx-2 rounded-lg p-1 text-sm placeholder:text-sm" placeholder="1,000,000" />
+                        <input onChange={changeMinSalary} type="number" className="border border-secondary-150 w-20 md:w-32 mx-2 rounded-lg p-1 text-sm placeholder:text-sm" placeholder="1,000,000" step={1000000} min={0} />
                         <span>-</span>
-                        <input type="number" className="border border-secondary-150 w-20 md:w-32 mx-2 rounded-lg p-1 text-sm placeholder:text-sm" placeholder="10,000,000" />
+                        <input onChange={changeMaxSalary} type="number" className="border border-secondary-150 w-20 md:w-32 mx-2 rounded-lg p-1 text-sm placeholder:text-sm" placeholder="10,000,000" step={1000000} min={0} />
                       </div>
                     </div>
                     <div>
                       <h3 className="mb-1 font-semibold">Select Region</h3>
-                      <select name="region" id="region" className="border border-secondary-200 p-1 rounded-md" defaultValue="" required>
+                      <select onChange={changeRegion} name="region" id="region" className="border border-secondary-200 p-1 rounded-md" defaultValue="" required>
                         <option value="" disabled>
                           select region
                         </option>
-                        <option value="US">USA</option>
+                        <option value="USA">USA</option>
                         <option value="Australia">Australia</option>
-                        <option value="Asia">Asia</option>
+                        <option value="Europe">Europe</option>
                       </select>
                     </div>
                     {/* <label htmlFor="Range">
