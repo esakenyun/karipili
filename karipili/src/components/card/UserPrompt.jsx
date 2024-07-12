@@ -13,7 +13,7 @@ export default function UserPrompt({ data }) {
       </div>
       <div className="flex flex-col gap-1">
         <p className="text-xs lg:text-lg font-bold text-primary-50">{item.title}</p>
-        <p className="flex text-yellow-500">{convertToStars(item.rating)}</p>
+        {/* <p className="flex text-yellow-500">{convertToStars(item.rating)}</p> */}
         <label className="text-primary-50 font-semibold">Description</label>
         <p className="text-xs lg:text-sm text-justify w-fit rounded-lg">
          {item.description}

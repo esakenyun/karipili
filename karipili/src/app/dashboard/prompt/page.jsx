@@ -49,7 +49,6 @@ export default function Prompt() {
     event.preventDefault();
     const response = await getRecommendations(minSalary, maxSalary, region, topN);
     setData(response.data);
-    console.log(response.data)
   };
 
   return (
