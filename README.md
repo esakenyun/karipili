@@ -1,3 +1,6 @@
+
+![Karipili](https://github.com/user-attachments/assets/e40a1a0c-83a1-4656-83f9-14fb64001e04)
+
 # Karipili Project
 
 Karipili is a career recommendation application that can recommend careers with preferences that match the user's preferences. The field we focus on is Information Technology, which is in high demand and has good career prospects.
